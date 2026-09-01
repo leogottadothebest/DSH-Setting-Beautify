@@ -2,5 +2,5 @@
 # side as of the last confirmed-consistent state. Both languages carry equal authority;
 # after editing either side, bring the other along and re-record with the repo's
 # verify-translation-pairing tooling (see DSH docs/i18n).
-README.md: 6ed29ba47c677582d4dd17fbd3ec1dfaafe057f6
-README.zh.md: ce57388d8d9e7d63390381cb1ad9649be4cebcb1
+README.md: fe6864e6a1888f1cbca48f131dd1a040b9a56ceb
+README.zh.md: c45cc3719f4e131a953cf6a2a15bf23a1c4ceb8a

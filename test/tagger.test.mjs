@@ -264,20 +264,20 @@ ok(archived.querySelector("div[style*='font-size:12px']").hasAttribute("data-dsh
 ok(archived.querySelector("button").hasAttribute("data-dshb-pill"), "archived restore button tagged pill");
 
 console.log("\n7) preferences (enable / density / motion)");
-const store = DSHB.createPrefsStore();
-eq(store.getSnapshot().enabled, true, "enabled by default");
-store.update({ enabled: false });
+eq(DSHB.loadPrefs().enabled, true, "enabled by default");
+DSHB.setPrefs({ enabled: false });
 ok(!panel.hasAttribute("data-dshb-panel"), "disabling removes data-dshb-panel");
 ok(!panel.hasAttribute("data-dshb-density"), "disabling removes density attr");
-store.update({ enabled: true, density: "compact", motion: false });
+DSHB.setPrefs({ enabled: true, density: "compact", motion: false });
 ok(panel.hasAttribute("data-dshb-panel"), "re-enabling restores data-dshb-panel");
 eq(panel.getAttribute("data-dshb-density"), "compact", "density compact mirrored");
 eq(panel.getAttribute("data-dshb-motion"), "off", "motion off mirrored");
-store.update({ enabled: true, density: "default", motion: true });
+DSHB.setPrefs({ enabled: true, density: "default", motion: true });
 
 console.log("\n8) module shape");
-eq(required.has("react"), true, "client requires react");
+eq(required.size, 0, "client module requires nothing (headless, no react)");
 ok(typeof window.DSHB.scanAll === "function", "window.DSHB exposes scanAll");
+ok(typeof window.DSHB.setPrefs === "function", "window.DSHB exposes setPrefs (headless preferences)");
 
 console.log("\n9) stylesheet sanity");
 const cssText = readFileSync(join(root, "lib", "styles", "settings.css"), "utf8");

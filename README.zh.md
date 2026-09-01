@@ -18,6 +18,7 @@ DSH 的设置界面由大量插件组合而成，历史上每一页都说着略�
 - **表面**：统一的卡片圆角/描边/底色、统一的行、控件、焦点环、标签页、徽章与滚动条，全部由 DSH 自身的 `--dsw-*` token 驱动，**浅色 / 深色 / 跟随系统**主题自然生效。
 - **动效**：克制的悬停微动效与过渡，尊重 `prefers-reduced-motion`，可单独关闭。
 - **可扩展**：任何页面——包括其他插件贡献的页面（例如已归档对话列表）——只需在根节点加一个属性（`data-dshb-scan`）即可套用同一设计语言，其余交给 DOM 归一化器处理。
+- **无界面化**：插件不会在设置导航栏添加任何条目——没有自己的设置页。偏好可选、仅存于 `localStorage`。
 
 插件无需改动 DSH 源码：它观察设置面板，为每个结构角色打上稳定的 `data-dshb-*` 属性（内置类名是构建期哈希，不可依赖），再由作用域样式表在其上应用设计语言。
 
@@ -54,18 +55,25 @@ pnpm add dsh-settings-beautify        # 安装到当前 Profile 的包集合
 #         name: dsh-settings-beautify
 ```
 
-安装后重启 DSH Desktop（或刷新 Web 窗口），设置导航栏会出现新的 **美化 Beautify** 页面。
+安装后重启 DSH Desktop（或刷新 Web 窗口）即自动生效——设置导航栏不会新增任何条目。
 
-## 使用
+## 偏好（无界面化）
 
-打开 **设置 Settings** → **美化 Beautify**：
+插件没有自己的设置页。偏好从浏览器 `localStorage` 的 `dsh-settings-beautify:prefs` 键读取：
 
-- **启用美化** —— 应用设计语言，或一键恢复 DSH 原始外观。
-- **界面密度** —— 紧凑 / 标准 / 宽松。
-- **动效** —— 卡片悬停微动效与过渡动画。
-- **关于** —— 版本与源码链接。
+| 键 | 取值 | 效果 |
+| --- | --- | --- |
+| `enabled` | `true` / `false` | 应用设计语言，或恢复 DSH 原始外观。 |
+| `density` | `compact` / `default` / `comfortable` | 行与列表间距。 |
+| `motion` | `true` / `false` | 卡片悬停微动效。`prefers-reduced-motion` 始终优先。 |
 
-偏好保存在浏览器 `localStorage`（键 `dsh-settings-beautify:prefs`），不触碰任何主机文件或设置命名空间。
+默认值：`{"enabled": true, "density": "default", "motion": true}`。如需调整，在浏览器控制台执行：
+
+```js
+window.DSHB.setPrefs({ density: "compact" })   // 或 { enabled: false }、{ motion: false }
+```
+
+不触碰任何主机文件或设置命名空间。
 
 ## 设计语言
 
@@ -91,6 +99,10 @@ DOM 归一化器自动覆盖内置页面。对于**你自己插件**的页面，
 2. 直接使用属性（`data-dshb-page-title`、`data-dshb-item-title`、`data-dshb-card` 等）获得完全控制。
 
 见[扩展契约](docs/DESIGN.zh.md#data-dshb-属性契约)。
+
+## 设计说明
+
+插件刻意保持**无界面化**：只重绘设置界面本身。如果你更希望有一个可见的控制页，那是一个很小的后续改动——提个 issue，可以在偏好开关后面加上。
 
 ## 开发
 

@@ -134,16 +134,26 @@ async function main() {
 
   // wait for the app shell
   for (let i = 0; i < 60; i += 1) {
-    if (await evaluate(`document.querySelector('[aria-haspopup="dialog"]') !== null`)) break;
+    if (await evaluate(`document.querySelectorAll('[aria-haspopup="dialog"]').length > 0`)) break;
     await new Promise((r) => setTimeout(r, 500));
   }
 
   console.log("\n== 1) client module presence ==");
   console.log("window.DSHB:", await evaluate(`typeof window.DSHB`));
+  console.log("style tag:", await evaluate(`!!document.getElementById('dsh-settings-beautify-styles')`));
 
   console.log("\n== 2) open settings ==");
-  await evaluate(`document.querySelector('[aria-haspopup="dialog"]').click()`);
-  await new Promise((r) => setTimeout(r, 800));
+  // the market launcher also carries aria-haspopup="dialog" — pick the settings trigger
+  const trigger = await evaluate(`(() => {
+    const b = [...document.querySelectorAll('[aria-haspopup="dialog"]')].find((x) => /设置|Settings/.test(x.textContent));
+    if (!b) return null;
+    const r = b.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+  })()`);
+  if (trigger === null) throw new Error("settings trigger not found");
+  await client.call("Input.dispatchMouseEvent", { type: "mousePressed", x: trigger.x, y: trigger.y, button: "left", clickCount: 1 });
+  await client.call("Input.dispatchMouseEvent", { type: "mouseReleased", x: trigger.x, y: trigger.y, button: "left", clickCount: 1 });
+  await new Promise((r) => setTimeout(r, 1500));
   const navCells = await evaluate(`[...document.querySelectorAll('[data-dshb-nav-cell]')].map((el) => el.textContent.trim())`);
   console.log("nav cells:", JSON.stringify(navCells));
   console.log("panel tagged:", await evaluate(`document.querySelector('[data-slot="settings.section"]')?.closest('[role="dialog"]')?.hasAttribute("data-dshb-panel") ?? false`));
@@ -169,7 +179,7 @@ async function main() {
 
   console.log("\n== 4) Beautify page ==");
   await evaluate(`[...document.querySelectorAll('[data-dshb-nav-cell]')].find((el) => el.textContent.includes('美化') || el.textContent.includes('Beautify'))?.click()`);
-  await new Promise((r) => setTimeout(r, 600));
+  await new Promise((r) => setTimeout(r, 1000));
   const beautify = await evaluate(`(() => {
     const host = document.querySelector('[data-slot="settings.section"]');
     return {

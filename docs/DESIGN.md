@@ -28,7 +28,7 @@ Tokens are defined on `[data-dshb-panel]` / `[data-dshb-scan]` roots.
 
 | Token | Size / Weight / Line | Role |
 | --- | --- | --- |
-| `--dshb-size-title-page` | 18px / 600 / 26px | Page title (models, plugins, market, desktop, agent presets, Beautify) |
+| `--dshb-size-title-page` | 18px / 600 / 26px | Page title (models, plugins, market, desktop, agent presets) |
 | `--dshb-size-desc` | 13px / 400 / 20px | Page explanation, group explanation, item description |
 | `--dshb-size-title-group` | 14px / 600 / 22px | Group heading inside a page |
 | `--dshb-size-title-item` | 14px / 500 / 22px | Preference-row title, card title, field label |
@@ -129,8 +129,7 @@ detection), inputs/pills/toggles/badges/code/links → their roles.
 ```
 
 **B. Full control.** Use the attributes directly in your own JSX; the
-normalizer respects existing attributes and never overrides them. This is
-what the plugin's own Beautify page does (dogfooding).
+normalizer respects existing attributes and never overrides them.
 
 ### 5.3 Stability promise
 
@@ -146,7 +145,9 @@ and a failed heuristic only means a node keeps its original styling.
 | `density` | `compact` / `default` / `comfortable` | Sets `data-dshb-density`; scales row padding and list gaps. |
 | `motion` | `true` / `false` | Sets `data-dshb-motion`; controls hover micro-motion. `prefers-reduced-motion` always wins. |
 
-Stored in `localStorage` under `dsh-settings-beautify:prefs`.
+Stored in `localStorage` under `dsh-settings-beautify:prefs`. The plugin is
+headless — no settings page owns these values; tune them from the browser
+console with `window.DSHB.setPrefs({ ... })`.
 
 ## 7. Future directions
 

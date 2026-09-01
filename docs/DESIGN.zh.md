@@ -17,7 +17,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 
 | Token | 字号 / 字重 / 行高 | 角色 |
 | --- | --- | --- |
-| `--dshb-size-title-page` | 18px / 600 / 26px | 页面标题（模型、插件、市场、桌面、智能体预设、美化页） |
+| `--dshb-size-title-page` | 18px / 600 / 26px | 页面标题（模型、插件、市场、桌面、智能体预设） |
 | `--dshb-size-desc` | 13px / 400 / 20px | 页面解释、组解释、条目解释 |
 | `--dshb-size-title-group` | 14px / 600 / 22px | 页面内的组标题 |
 | `--dshb-size-title-item` | 14px / 500 / 22px | 偏好行标题、卡片标题、字段标签 |
@@ -107,7 +107,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 </div>
 ```
 
-**方式 B：完全控制。** 直接在自有 JSX 中使用属性；归一化器尊重既有属性，绝不覆盖。本插件的“美化”页正是这样做的（dogfooding）。
+**方式 B：完全控制。** 直接在自有 JSX 中使用属性；归一化器尊重既有属性，绝不覆盖。
 
 ### 5.3 稳定性承诺
 
@@ -121,7 +121,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 | `density` | `compact` / `default` / `comfortable` | 设置 `data-dshb-density`；缩放行内边距与列表间距。 |
 | `motion` | `true` / `false` | 设置 `data-dshb-motion`；控制悬停微动效。`prefers-reduced-motion` 始终优先。 |
 
-存储于 `localStorage` 的 `dsh-settings-beautify:prefs` 键下。
+存储于 `localStorage` 的 `dsh-settings-beautify:prefs` 键下。插件无界面化——没有任何设置页拥有这些值；可在浏览器控制台用 `window.DSHB.setPrefs({ ... })` 调整。
 
 ## 7. 未来方向
 

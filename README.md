@@ -32,6 +32,9 @@ language:
 - **Extensible**: any page — including pages contributed by other plugins,
   such as archived-conversation lists — opts into the same language with one
   attribute (`data-dshb-scan`), and the DOM normalizer handles the rest.
+- **Headless**: the plugin adds nothing to the settings nav rail — no
+  settings page of its own. Preferences are opt-in and live in
+  `localStorage`.
 
 It works without touching DSH's source: the plugin observes the settings
 panel, marks each structural role with a stable `data-dshb-*` attribute (the
@@ -73,21 +76,29 @@ pnpm add dsh-settings-beautify        # into the profile's package set
 #         name: dsh-settings-beautify
 ```
 
-After install, restart DSH Desktop (or reload the web window). A new
-**美化 / Beautify** page appears in the settings nav rail.
+After install, restart DSH Desktop (or reload the web window). The design
+language is applied automatically — nothing is added to the settings nav
+rail.
 
-## Usage
+## Preferences (headless)
 
-Open **设置 Settings** → **美化 Beautify**:
+The plugin has no settings page of its own. Preferences are read from the
+browser's `localStorage` under `dsh-settings-beautify:prefs`:
 
-- **启用美化 Enable Beautify** — apply or restore the original DSH look.
-- **界面密度 Density** — 紧凑 Compact / 标准 Default / 宽松 Comfortable.
-- **动效 Motion** — card hover micro-motion and transitions.
-- **关于 About** — version and source link.
+| Key | Values | Effect |
+| --- | --- | --- |
+| `enabled` | `true` / `false` | Apply the language or restore DSH's original look. |
+| `density` | `compact` / `default` / `comfortable` | Row and list spacing. |
+| `motion` | `true` / `false` | Card hover micro-motion. `prefers-reduced-motion` always wins. |
 
-Preferences are stored in the browser's `localStorage`
-(`dsh-settings-beautify:prefs`); no host files or settings namespaces are
-touched.
+Defaults: `{"enabled": true, "density": "default", "motion": true}`. To tune
+them, open the browser console and run:
+
+```js
+window.DSHB.setPrefs({ density: "compact" })   // or { enabled: false }, { motion: false }
+```
+
+No host files or settings namespaces are touched.
 
 ## The design language
 
@@ -120,6 +131,12 @@ either:
    `data-dshb-item-title`, `data-dshb-card`, …) for full control.
 
 See the [extensibility contract](docs/DESIGN.md#the-data-dshb-attribute-contract).
+
+## Design notes
+
+The plugin is intentionally **headless**: it only restyles the settings
+surface. If you would rather have a visible control page, that is a small
+follow-up change — open an issue and it can be added behind a preference.
 
 ## Development
 
