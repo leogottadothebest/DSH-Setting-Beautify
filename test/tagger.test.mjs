@@ -263,6 +263,16 @@ ok(archived.querySelector("div[style*='font-size:14px']").hasAttribute("data-dsh
 ok(archived.querySelector("div[style*='font-size:12px']").hasAttribute("data-dshb-item-desc"), "archived row desc tagged");
 ok(archived.querySelector("button").hasAttribute("data-dshb-pill"), "archived restore button tagged pill");
 
+console.log("\n6b) section switch resets the scroll position");
+const optionsEl = $(".options");
+setSection(modelsSection);
+optionsEl.scrollTop = 200;
+setSection(desktopSection);
+eq(optionsEl.scrollTop, 0, "switching sections resets the scroll to the top");
+optionsEl.scrollTop = 120;
+DSHB.scanAll();
+eq(optionsEl.scrollTop, 120, "re-rendering the same section keeps the scroll");
+
 console.log("\n7) preferences (enable / density / motion)");
 eq(DSHB.loadPrefs().enabled, true, "enabled by default");
 DSHB.setPrefs({ enabled: false });
