@@ -116,7 +116,7 @@ the `data-dshb-*` attribute contract — lives in
 | Body (正文) | 14px / 400 / 22px | `--dsw-alias-label-primary` |
 | Caption (辅助文字) | 12px / 400 / 18px | `--dsw-alias-label-tertiary` |
 
-Cards: 12px radius · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-2`.
+Cards: 12px radius · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-3` (elevated over the panel).
 Controls: 8px radius, 36px min-height, brand focus ring. Radii are tokenized
 (`--dshb-*`) so a future version can offer alternate palettes.
 

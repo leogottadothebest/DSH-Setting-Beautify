@@ -33,7 +33,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 
 | 元素 | 规范 |
 | --- | --- |
-| 卡片（`data-dshb-card`） | 圆角 `--dshb-radius-card`（12px），描边 `--dshb-card-border`（`--dsw-alias-border-l2`），底色 `--dshb-card-bg`（`--dsw-alias-bg-layer-2`），160ms 缓动过渡 |
+| 卡片（`data-dshb-card`） | 圆角 `--dshb-radius-card`（12px），描边 `--dshb-card-border`（`--dsw-alias-border-l2`），底色 `--dshb-card-bg`（`--dsw-alias-bg-layer-3`，相对 layer-2 面板抬升），160ms 缓动过渡 |
 | 卡片悬停（可交互卡片） | 描边 → `--dsw-alias-label-dimmed`，`translateY(-1px)`，柔和阴影（仅在动效开启时） |
 | 行（`data-dshb-row`） | 上下 16px 内边距；密度变体 12px / 20px |
 | 输入框 / 选择框（`data-dshb-input`） | 36px 最小高度，圆角 `--dshb-radius-control`（8px），`--dsw-alias-border-l2`，焦点：品牌色描边 + 2px 18% 光环 |

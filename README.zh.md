@@ -89,7 +89,7 @@ window.DSHB.setPrefs({ density: "compact" })   // 或 { enabled: false }、{ mot
 | 正文 | 14px / 400 / 22px | `--dsw-alias-label-primary` |
 | 辅助文字 | 12px / 400 / 18px | `--dsw-alias-label-tertiary` |
 
-卡片：12px 圆角 · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-2`。控件：8px 圆角、36px 最小高度、品牌色焦点环。半径等均以 `--dshb-*` token 化，未来版本可平滑提供其他外观方案。
+卡片：12px 圆角 · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-3`（相对面板抬升）。控件：8px 圆角、36px 最小高度、品牌色焦点环。半径等均以 `--dshb-*` token 化，未来版本可平滑提供其他外观方案。
 
 ## 为其他插件页面接入
 

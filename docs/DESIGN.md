@@ -48,7 +48,7 @@ the DSH row convention that most settings rows already approximate.
 
 | Element | Spec |
 | --- | --- |
-| Card (`data-dshb-card`) | radius `--dshb-radius-card` (12px), border `--dshb-card-border` (`--dsw-alias-border-l2`), background `--dshb-card-bg` (`--dsw-alias-bg-layer-2`), 160ms ease transitions |
+| Card (`data-dshb-card`) | radius `--dshb-radius-card` (12px), border `--dshb-card-border` (`--dsw-alias-border-l2`), background `--dshb-card-bg` (`--dsw-alias-bg-layer-3`, elevated over the layer-2 panel), 160ms ease transitions |
 | Card hover (interactive cards) | border → `--dsw-alias-label-dimmed`, `translateY(-1px)`, soft shadow (only when motion is on) |
 | Row (`data-dshb-row`) | 16px vertical padding; density variants 12px / 20px |
 | Input / select (`data-dshb-input`) | 36px min-height, radius `--dshb-radius-control` (8px), `--dsw-alias-border-l2`, focus: brand border + 2px 18% halo |

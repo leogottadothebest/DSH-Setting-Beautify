@@ -1,6 +1,6 @@
 {
   "name": "dsh-settings-beautify",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "One design language for the DSH settings surface: unified title / explanation / content typography, consistent cards, controls, focus and motion across every settings page — including pages contributed by other plugins.",
   "keywords": [
     "dsh",

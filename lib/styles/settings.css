@@ -32,7 +32,7 @@
   --dshb-radius-pill: 999px;
   --dshb-duration: 160ms;
   --dshb-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --dshb-card-bg: var(--dsw-alias-bg-layer-2);
+  --dshb-card-bg: var(--dsw-alias-bg-layer-3); /* elevated over the layer-2 panel */
   --dshb-card-border: var(--dsw-alias-border-l2);
   --dshb-focus: var(--dsw-alias-brand-primary);
   --dshb-focus-halo: color-mix(in srgb, var(--dshb-focus) 18%, transparent);
@@ -234,6 +234,67 @@
   text-underline-offset: 2px;
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-link]:hover { text-decoration-thickness: 2px; }
+
+/* ---------- plugin market polish (stable dshMarket* classes) ---------- */
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketCategories > span:first-child {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketCategories button {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 999px;
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+  line-height: 18px;
+  transition:
+    background-color var(--dshb-duration) var(--dshb-ease),
+    border-color var(--dshb-duration) var(--dshb-ease),
+    color var(--dshb-duration) var(--dshb-ease);
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketCategories button:hover {
+  background: var(--dshb-hover);
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketCategories button[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--dshb-focus) 12%, transparent);
+  border-color: var(--dshb-focus);
+  color: var(--dsw-alias-label-primary);
+  font-weight: 500;
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketTags {
+  gap: 6px;
+  margin-top: 12px;
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketTags > * {
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 999px;
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 11px;
+  line-height: 17px;
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketTags > *:first-child {
+  color: var(--dsw-alias-label-secondary);
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketToolbar {
+  margin-bottom: 18px;
+}
+:is([data-dshb-panel], [data-dshb-scan]) .dshMarketToolbar > span:last-child {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 999px;
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+  line-height: 18px;
+}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
