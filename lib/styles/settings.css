@@ -77,7 +77,7 @@
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-close]:hover { background: var(--dshb-hover); }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-options] {
-  padding-top: 14px; /* 与左侧菜单栏顶部平行：28 + 54 + 14 = 96 = 28 + 28 + 40 */
+  padding-top: 42px; /* 与左侧菜单栏顶部平行：头部盒(0..54) + 42 = 96 = 28 + 28 + 40 */
   padding-right: 28px;
   padding-bottom: 28px;
   scrollbar-width: thin;
