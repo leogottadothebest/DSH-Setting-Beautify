@@ -47,8 +47,8 @@
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav] {
   width: 200px;
-  gap: 16px; /* 标题与菜单之间的留白严格受控 */
-  padding-top: 16px;
+  gap: 24px; /* 标题与菜单之间的留白 */
+  padding-top: 24px;
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav-title] {
   font-size: 20px; /* 左上角“设置”标题加大 */
@@ -70,16 +70,16 @@
   outline: 2px solid var(--dshb-focus);
   outline-offset: -2px;
 }
-:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-header] { padding: 16px 22px 8px 20px; }
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-header] { padding: 24px 22px 8px 20px; }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-close] {
   border-radius: 8px;
   transition: background-color var(--dshb-duration) var(--dshb-ease), color var(--dshb-duration) var(--dshb-ease);
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-close]:hover { background: var(--dshb-hover); }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-options] {
-  padding-top: 6px; /* 右列顶部与左菜单顶部平行：54 + 6 = 60 = 16 + 28 + 16 */
+  padding-top: 22px; /* 右列顶部与左菜单顶部平行：54 + 22 = 76 = 24 + 28 + 24 */
   padding-right: 28px;
-  padding-bottom: 16px; /* 底部留白严格受控 */
+  padding-bottom: 24px; /* 底部留白 */
   scrollbar-width: thin;
   scrollbar-color: var(--dsw-alias-scrollbar-bg-l2) transparent;
 }
