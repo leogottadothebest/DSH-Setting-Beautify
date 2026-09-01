@@ -1,0 +1,82 @@
+{
+  "name": "dsh-settings-beautify",
+  "version": "0.1.0",
+  "description": "One design language for the DSH settings surface: unified title / explanation / content typography, consistent cards, controls, focus and motion across every settings page — including pages contributed by other plugins.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "settings",
+    "ui",
+    "design-system",
+    "design-language",
+    "beautify",
+    "theme"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leogottadothebest/DSH-Setting-Beautify.git"
+  },
+  "homepage": "https://github.com/leogottadothebest/DSH-Setting-Beautify#readme",
+  "bugs": {
+    "url": "https://github.com/leogottadothebest/DSH-Setting-Beautify/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "docs/**",
+    "lib/**",
+    "LICENSE",
+    "README.md",
+    "README.zh.md",
+    "README.i18n.yaml",
+    "SECURITY.md",
+    "SECURITY.zh.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "check": "node --check lib/client.js && node --check lib/index.js && node --check scripts/sync-styles.mjs",
+    "test": "node test/tagger.test.mjs",
+    "sync-styles": "node scripts/sync-styles.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}
