@@ -45,11 +45,15 @@
   -webkit-font-smoothing: antialiased;
   width: 880px; /* 800 -> 880: room for a consistent 720px content column */
 }
-:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav] { width: 200px; }
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav] {
+  width: 200px;
+  gap: 28px; /* 标题与导航列表之间留大一些 */
+  padding-top: 26px;
+}
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav-title] {
-  font-size: 15px;
+  font-size: 18px; /* 左上角“设置”标题加大 */
   font-weight: 600;
-  line-height: 24px;
+  line-height: 26px;
   letter-spacing: -0.01em;
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-nav-cell] {
@@ -66,13 +70,14 @@
   outline: 2px solid var(--dshb-focus);
   outline-offset: -2px;
 }
-:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-header] { padding: 20px 22px 8px 20px; }
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-header] { padding: 24px 22px 16px 20px; }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-close] {
   border-radius: 8px;
   transition: background-color var(--dshb-duration) var(--dshb-ease), color var(--dshb-duration) var(--dshb-ease);
 }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-close]:hover { background: var(--dshb-hover); }
 :is([data-dshb-panel], [data-dshb-scan]) [data-dshb-options] {
+  padding-top: 4px;
   padding-right: 28px;
   padding-bottom: 28px;
   scrollbar-width: thin;
