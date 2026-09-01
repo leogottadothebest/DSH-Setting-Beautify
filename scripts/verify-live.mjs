@@ -41,14 +41,17 @@ function readAuthSecret() {
 function b64url(bytes) {
   return Buffer.from(bytes).toString("base64").replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/u, "");
 }
-function cookieFor(secret, authority) {
+function cookieFor(secretB64, authority) {
+  // the server's canonicalSecret() decodes the stored base64url bytes and
+  // HMACs with the raw 32 bytes — mirror that exactly
+  const key = Buffer.from(secretB64, "base64");
   const body = b64url(Buffer.from(JSON.stringify({
     version: 1,
     authority,
     issuedAt: Date.now(),
     expiresAt: Date.now() + 7 * 86400e3
   }), "utf8"));
-  const value = `v1.${body}.${b64url(createHmac("sha256", secret).update(body).digest())}`;
+  const value = `v1.${body}.${b64url(createHmac("sha256", key).update(body).digest())}`;
   const name = "dsh-auth-" + b64url(createHash("sha256").update(authority).digest());
   return `${name}=${value}`;
 }
