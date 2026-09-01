@@ -1,0 +1,8 @@
+# DSH Desktop bundle patch: register the Beautify plugin in every composed
+# Desktop profile. The client half is loaded separately through the
+# `dsh.client` manifest declaration in package.json, so this entry only has to
+# exist (and to appear in the plugin inventory as the package's host half).
+- insert:
+    - id: dsh-settings-beautify
+      name: dsh-settings-beautify
+      config: {}
