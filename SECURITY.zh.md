@@ -14,7 +14,7 @@
 
 请**不要**就安全问题提交公开 issue。请私下联系维护者：
 
-- 通过 GitHub 仓库的 [Security Advisories](https://github.com/leogottadothebest/DSH-Setting-Beautify/security/advisories) 页面提交私有报告，或
+- 通过 GitHub 仓库的 [Security Advisories](https://github.com/leogottadothebest/dsh-settings-beautify/security/advisories) 页面提交私有报告，或
 - 邮件联系维护者（地址见仓库描述）。
 
 我们会在 3 个工作日内确认收到。请附上：

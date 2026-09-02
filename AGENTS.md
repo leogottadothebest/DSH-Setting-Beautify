@@ -1,10 +1,10 @@
-# DSH 项目自动提交规则(DSH-Setting-Beautify)
+# DSH 项目自动提交规则(dsh-settings-beautify)
 
-本文件由 DSH 在每个会话启动时读取,适用于本仓库(DSH-Setting-Beautify)的**所有会话/对话**。
+本文件由 DSH 在每个会话启动时读取,适用于本仓库(dsh-settings-beautify)的**所有会话/对话**。
 
 ## 硬性规则
 
-当会话工作区为本仓库(即 `/Users/leo/Documents/DeepSeekHarness/DSH-Beautify` 或其子目录)时,必须遵守以下规则:
+当会话工作区为本仓库(即 `/Users/leo/Documents/DeepSeekHarness/dsh-settings-beautify` 或其子目录)时,必须遵守以下规则:
 
 1. **每次**对仓库内任何文件做出修改/新增/删除后,**在回合结束前**执行:
    `git add -A` → `git commit -m "<具体描述>"` → `git push origin main`。
@@ -14,4 +14,4 @@
 
 ## 适用范围
 
-此规则只约束本仓库(DSH-Setting-Beautify);其他项目不受影响,除非各仓库有自己的 AGENTS.md。
+此规则只约束本仓库(dsh-settings-beautify);其他项目不受影响,除非各仓库有自己的 AGENTS.md。

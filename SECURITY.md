@@ -21,7 +21,7 @@ Please do **not** open a public issue for security problems. Report them
 privately to the maintainers:
 
 - Open a private advisory via the GitHub repository's
-  [Security Advisories](https://github.com/leogottadothebest/DSH-Setting-Beautify/security/advisories)
+  [Security Advisories](https://github.com/leogottadothebest/dsh-settings-beautify/security/advisories)
   page, or
 - Email the maintainers (address listed in the repository description).
 

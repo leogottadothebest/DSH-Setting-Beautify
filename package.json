@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leogottadothebest/DSH-Setting-Beautify.git"
+    "url": "git+https://github.com/leogottadothebest/dsh-settings-beautify.git"
   },
-  "homepage": "https://github.com/leogottadothebest/DSH-Setting-Beautify#readme",
+  "homepage": "https://github.com/leogottadothebest/dsh-settings-beautify#readme",
   "bugs": {
-    "url": "https://github.com/leogottadothebest/DSH-Setting-Beautify/issues"
+    "url": "https://github.com/leogottadothebest/dsh-settings-beautify/issues"
   },
   "type": "module",
   "main": "lib/index.js",
