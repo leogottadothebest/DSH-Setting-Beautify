@@ -109,7 +109,7 @@ DOM 归一化器自动覆盖内置页面。对于**你自己插件**的页面，
 ```sh
 pnpm install
 pnpm check        # 语法检查
-pnpm test         # DOM 归一化器的 jsdom 测试（79 条断言）
+pnpm test         # DOM 归一化器的 jsdom 测试（86 条断言）
 pnpm sync-styles  # 由 lib/client.js 重新生成 lib/styles/settings.css
 ```
 

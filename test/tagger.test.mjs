@@ -312,6 +312,37 @@ ok(acvCss.includes("--dshb-gap-title-desc"), "stylesheet declares the title-capt
 ok(acvCss.includes("[data-dshb-item-text]"), "stylesheet normalizes the tagged text column");
 ok(acvCss.includes("[data-dshb-page-title]:has(+ [data-dshb-page-desc])"), "stylesheet couples page title with its prose on opt-in pages");
 
+console.log("\n6e) DSH feature card inside a plain settings section (agent-preset style)");
+const featureCardSection = `
+  <div class="presets-root">
+    <ul style="display:grid;gap:12px">
+      <li style="border:1px solid #ddd;border-radius:12px;background:#fafafa;display:flex;flex-direction:column">
+        <button style="display:flex;flex-direction:column;gap:8px;padding:14px 16px;text-align:left;background:none;border:none;cursor:pointer">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600">标准模式</span><span style="font-size:11px;border:1px solid #ccc;border-radius:999px;padding:1px 8px">内置</span></div>
+          <div style="font-size:13px;color:#666">功能完整的编码 Agent,支持文件编辑与 Shell</div>
+          <div style="font-size:11px;color:#999;margin-top:auto">standard</div>
+        </button>
+        <div style="display:flex;justify-content:flex-end;gap:2px;border-top:1px solid #eee;padding:6px 10px">
+          <button style="width:24px;height:24px">编辑</button><button style="width:24px;height:24px">复制</button>
+        </div>
+      </li>
+    </ul>
+  </div>`;
+setSection(featureCardSection);
+const featureCard = $(".presets-root li");
+ok(featureCard.hasAttribute("data-dshb-card"), "feature card tagged card");
+const featureBody = featureCard.querySelector("button");
+eq(featureBody.getAttribute("data-dshb-item-text"), "", "feature card body button tagged item-text");
+eq(featureBody.firstElementChild.getAttribute("data-dshb-item-title"), "", "feature card name row tagged item-title");
+eq(featureBody.children[1].getAttribute("data-dshb-item-desc"), "", "feature card description tagged item-desc");
+
+console.log("\n6f) interactive cards (a theme cube) are left as controls, not caption columns");
+setSection(`<div class="appearance-root"><button style="border:1px solid #ddd;border-radius:16px;background:#fff;display:flex;flex-direction:column;gap:8px;align-items:center;padding:20px 32px;width:180px"><span style="font-size:14px">浅色</span></button></div>`);
+const cube = $(".appearance-root button");
+ok(cube.hasAttribute("data-dshb-card"), "theme cube tagged card");
+ok(cube.hasAttribute("data-dshb-control"), "theme cube tagged control");
+ok(!cube.hasAttribute("data-dshb-item-text"), "theme cube is not an item-text column");
+
 console.log("\n7) preferences (enable / density / motion)");
 eq(DSHB.loadPrefs().enabled, true, "enabled by default");
 DSHB.setPrefs({ enabled: false });

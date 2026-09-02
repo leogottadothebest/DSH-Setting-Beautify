@@ -47,7 +47,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 动效：`--dshb-duration` 160ms，`--dshb-ease` `cubic-bezier(0.16, 1, 0.3, 1)`。
 密度：`data-dshb-density="compact"` 将行缩至 12px、列表间距 8px；`"comfortable"` 将行增至 20px、间距 14px。
 
-**标题 → 注释间距。** 标题与其正下方的小字注释永远保持 `--dshb-gap-title-desc`（4px）——与 DSH 自带行文本列的距离一致。机制：被标记的文字列（`data-dshb-item-text`）统一为 4px 纵向 flex 列（其直属标题/注释子元素的 margin 清零）；未被文字列包裹的注释补同样 4px 的 `margin-top`；在 opt-in 页面上，后跟说明段的页面/分组标题（`page-desc` / `group-desc`）去掉下边距，使说明段紧贴标题下方 4px。DSH 自带页面的节奏保持不变：标题/说明段的配对规则只作用于 opt-in（`data-dshb-scan`）页面。
+**标题 → 注释间距。** 标题与其正下方的小字注释永远保持 `--dshb-gap-title-desc`（4px）——与 DSH 自带行文本列的距离一致。机制：被标记的文字列（`data-dshb-item-text`）统一为 4px 纵向 flex 列（其直属标题/注释子元素的 margin 清零）；未被文字列包裹的注释补同样 4px 的 `margin-top`；在 opt-in 页面上，后跟说明段的页面/分组标题（`page-desc` / `group-desc`）去掉下边距，使说明段紧贴标题下方 4px。DSH 自带页面的页面/分组节奏保持不变：标题/说明段的配对规则只作用于 opt-in（`data-dshb-scan`）页面。文字列识别覆盖**每一个设置节**——包括 DSH 自带的特性卡片（Agent 预设、桌面 Profile、插件市场）——但本身是单个控件的卡片（主题方块、市场磁贴、可展开行）保持原样，不改变其自有排版。
 
 ## 4. 页面架构
 

@@ -71,8 +71,12 @@ direct title/description children are zeroed), a description not wrapped in a
 text column gets the same 4px `margin-top`, and on opted-in pages a page or
 group heading followed by its prose (`page-desc` / `group-desc`) loses its
 bottom margin so the prose sits 4px under the heading. Built-in DSH pages keep
-their own rhythm untouched: only opted-in (`data-dshb-scan`) pages get the
-heading/prose pairing rule.
+their own page/group rhythm: only opted-in (`data-dshb-scan`) pages get the
+heading/prose pairing rule. Caption columns are detected on every settings
+section — including DSH's own feature cards (agent presets, desktop profile,
+plugin market) — but cards that are themselves a single control (a theme cube,
+a market tile, an expandable row) are left untouched so their own layout is
+respected.
 
 ## 4. Page architecture
 
