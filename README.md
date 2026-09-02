@@ -143,7 +143,7 @@ follow-up change — open an issue and it can be added behind a preference.
 ```sh
 pnpm install
 pnpm check        # syntax checks
-pnpm test         # jsdom tests for the DOM normalizer (66 assertions)
+pnpm test         # jsdom tests for the DOM normalizer (69 assertions)
 pnpm sync-styles  # regenerate lib/styles/settings.css from lib/client.js
 ```
 
