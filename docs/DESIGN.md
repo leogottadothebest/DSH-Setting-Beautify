@@ -63,6 +63,17 @@ Motion: `--dshb-duration` 160ms, `--dshb-ease` `cubic-bezier(0.16, 1, 0.3, 1)`.
 Density: `data-dshb-density="compact"` shrinks rows to 12px and list gaps to
 8px; `"comfortable"` grows rows to 20px and gaps to 14px.
 
+**Title → caption gap.** A title and the small explanation directly below it
+always stay `--dshb-gap-title-desc` (4px) apart — the same distance DSH's own
+row text columns use. The mechanism: a tagged text column
+(`data-dshb-item-text`) is normalized to a 4px flex column (margins of its
+direct title/description children are zeroed), a description not wrapped in a
+text column gets the same 4px `margin-top`, and on opted-in pages a page or
+group heading followed by its prose (`page-desc` / `group-desc`) loses its
+bottom margin so the prose sits 4px under the heading. Built-in DSH pages keep
+their own rhythm untouched: only opted-in (`data-dshb-scan`) pages get the
+heading/prose pairing rule.
+
 ## 4. Page architecture
 
 A normalized settings page looks like this (the tagger produces these
@@ -104,7 +115,7 @@ The normalizer observes the settings dialog and tags:
 | `data-dshb-page-title`, `data-dshb-page-desc` | First heading + its prose sibling. |
 | `data-dshb-group-title`, `data-dshb-group-desc` | Subsequent headings + prose siblings. |
 | `data-dshb-card`, `data-dshb-card-interactive`, `data-dshb-card-list` | Bordered, rounded surfaces and their containers. |
-| `data-dshb-row`, `data-dshb-item-text`, `data-dshb-item-title`, `data-dshb-item-desc` | Preference rows and their text column. |
+| `data-dshb-row`, `data-dshb-item-text`, `data-dshb-item-title`, `data-dshb-item-desc` | Preference rows and their text column. On opted-in pages, a stacked caption column inside a card (title over explanation, e.g. archived-conversations rows) receives the same item-text roles automatically. |
 | `data-dshb-control`, `data-dshb-input`, `data-dshb-toggle`, `data-dshb-pill` | Interactive controls. |
 | `data-dshb-field` | Label + input groups. |
 | `data-dshb-tabs`, `data-dshb-tab` | Tab lists and tabs. |
@@ -114,12 +125,16 @@ The normalizer observes the settings dialog and tags:
 ### 5.2 Opt-in for third-party pages
 
 Any page outside the settings panel (an archived-conversations page, a
-plugin-owned settings-like page, …) can join the language in two ways:
+plugin-owned settings-like page, …) can join the language in two ways — and a
+third-party section hosted *inside* the settings dialog works the same way by
+putting the attribute on its section root:
 
 **A. One attribute.** Add `data-dshb-scan` to the page root. The normalizer
 then applies the generic pass: headings → page/group title + prose, bordered
 rounded elements → cards, divider rows → rows (with title/description/control
-detection), inputs/pills/toggles/badges/code/links → their roles.
+detection), stacked caption columns inside cards → item-text/title/desc,
+inputs/pills/toggles/badges/code/links → their roles. The title → caption gap
+is normalized to 4px (`--dshb-gap-title-desc`) on these pages.
 
 ```html
 <div data-dshb-scan>

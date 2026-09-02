@@ -47,6 +47,8 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 动效：`--dshb-duration` 160ms，`--dshb-ease` `cubic-bezier(0.16, 1, 0.3, 1)`。
 密度：`data-dshb-density="compact"` 将行缩至 12px、列表间距 8px；`"comfortable"` 将行增至 20px、间距 14px。
 
+**标题 → 注释间距。** 标题与其正下方的小字注释永远保持 `--dshb-gap-title-desc`（4px）——与 DSH 自带行文本列的距离一致。机制：被标记的文字列（`data-dshb-item-text`）统一为 4px 纵向 flex 列（其直属标题/注释子元素的 margin 清零）；未被文字列包裹的注释补同样 4px 的 `margin-top`；在 opt-in 页面上，后跟说明段的页面/分组标题（`page-desc` / `group-desc`）去掉下边距，使说明段紧贴标题下方 4px。DSH 自带页面的节奏保持不变：标题/说明段的配对规则只作用于 opt-in（`data-dshb-scan`）页面。
+
 ## 4. 页面架构
 
 归一化后的设置页面长这样（这些属性由归一化器自动打上）：
@@ -87,7 +89,7 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 | `data-dshb-page-title`、`data-dshb-page-desc` | 第一个标题及其后的说明段落。 |
 | `data-dshb-group-title`、`data-dshb-group-desc` | 后续标题及其后的说明段落。 |
 | `data-dshb-card`、`data-dshb-card-interactive`、`data-dshb-card-list` | 带描边圆角的表面及其容器。 |
-| `data-dshb-row`、`data-dshb-item-text`、`data-dshb-item-title`、`data-dshb-item-desc` | 偏好行及其文本列。 |
+| `data-dshb-row`、`data-dshb-item-text`、`data-dshb-item-title`、`data-dshb-item-desc` | 偏好行及其文本列。在 opt-in 页面上，卡片内上下堆叠的“标题在上、注释在下”文字列（例如已归档对话行）也会自动获得相同的 item-text 角色。 |
 | `data-dshb-control`、`data-dshb-input`、`data-dshb-toggle`、`data-dshb-pill` | 交互控件。 |
 | `data-dshb-field` | 标签 + 输入框组合。 |
 | `data-dshb-tabs`、`data-dshb-tab` | 标签页列表与标签页。 |
@@ -96,9 +98,9 @@ token 定义在 `[data-dshb-panel]` / `[data-dshb-scan]` 根上。
 
 ### 5.2 第三方页面接入
 
-设置面板之外的任何页面（已归档对话页、插件自有的类设置页面等）都可以两种方式加入设计语言：
+设置面板之外的任何页面（已归档对话页、插件自有的类设置页面等）都可以两种方式加入设计语言——被托管在设置对话框**内部**的第三方节也一样：把属性加到该节根节点即可。
 
-**方式 A：一个属性。** 在页面根节点添加 `data-dshb-scan`。归一化器随后应用泛化规则：标题 → 页面/组标题 + 说明，带描边圆角元素 → 卡片，分隔行 → 行（自动识别标题/解释/控件），输入框/胶囊/开关/徽章/代码/链接 → 对应角色。
+**方式 A：一个属性。** 在页面根节点添加 `data-dshb-scan`。归一化器随后应用泛化规则：标题 → 页面/组标题 + 说明，带描边圆角元素 → 卡片，分隔行 → 行（自动识别标题/解释/控件），卡片内的堆叠“标题+注释”文字列 → item-text/title/desc，输入框/胶囊/开关/徽章/代码/链接 → 对应角色。这类页面上的标题 → 注释间距统一归一为 4px（`--dshb-gap-title-desc`）。
 
 ```html
 <div data-dshb-scan>

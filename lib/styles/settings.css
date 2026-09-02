@@ -32,6 +32,7 @@
   --dshb-radius-pill: 999px;
   --dshb-duration: 160ms;
   --dshb-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dshb-gap-title-desc: 4px; /* 标题与其下方注释的统一间距(与 DSH 行内标题-注释一致) */
   --dshb-card-bg: var(--dsw-alias-bg-layer-3); /* elevated over the layer-2 panel */
   --dshb-card-border: var(--dsw-alias-border-l2);
   --dshb-focus: var(--dsw-alias-brand-primary);
@@ -133,6 +134,33 @@
 :is([data-dshb-panel], [data-dshb-scan]) p {
   font-size: var(--dshb-size-body);
   line-height: var(--dshb-line-body);
+}
+
+/* ---------- caption gap: 标题与注释永远保持同一距离 ---------- */
+/* 文字列容器统一为纵向 flex + 4px 间隔(DSH 行文本列已是该形态,逐像素对齐;
+   第三方/opt-in 页面的卡片内文字列(标题在上、注释在下)也被归一到同一间距)。 */
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-item-text] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dshb-gap-title-desc);
+}
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-item-text] > [data-dshb-item-title],
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-item-text] > [data-dshb-item-desc] {
+  margin: 0;
+}
+/* 未被文字列包裹的注释(手工标记页面):用 margin 补出同样 4px */
+:is([data-dshb-panel], [data-dshb-scan]) [data-dshb-item-desc]:not([data-dshb-item-text] [data-dshb-item-desc]) {
+  margin-top: var(--dshb-gap-title-desc);
+}
+/* 页面/分组标题与其说明段落:仅在 opt-in 页面上归一(自带页面的节奏由各自
+   排版决定,这里不动)——标题下紧贴的说明段与标题间统一为 4px */
+[data-dshb-scan] [data-dshb-page-title]:has(+ [data-dshb-page-desc]),
+[data-dshb-scan] [data-dshb-group-title]:has(+ [data-dshb-group-desc]) {
+  margin-bottom: 0;
+}
+[data-dshb-scan] [data-dshb-page-desc],
+[data-dshb-scan] [data-dshb-group-desc] {
+  margin-top: var(--dshb-gap-title-desc);
 }
 
 /* ---------- rows ---------- */

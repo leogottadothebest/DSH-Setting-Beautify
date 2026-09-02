@@ -117,16 +117,20 @@ the `data-dshb-*` attribute contract — lives in
 | Caption (辅助文字) | 12px / 400 / 18px | `--dsw-alias-label-tertiary` |
 
 Cards: 12px radius · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-3` (elevated over the panel).
-Controls: 8px radius, 36px min-height, brand focus ring. Radii are tokenized
-(`--dshb-*`) so a future version can offer alternate palettes.
+Controls: 8px radius, 36px min-height, brand focus ring. The title → caption
+gap is a uniform 4px everywhere the language applies (`--dshb-gap-title-desc`,
+matching DSH's row convention). Radii are tokenized (`--dshb-*`) so a future
+version can offer alternate palettes.
 
 ## Contributing pages from other plugins
 
 The DOM normalizer auto-tags the built-in pages. For **your** plugin's page,
 either:
 
-1. Add `data-dshb-scan` to the page root — the normalizer then applies the
-   same heading/prose/card/row/control rules generically; or
+1. Add `data-dshb-scan` to the page root (a third-party section hosted
+   inside the settings dialog works the same way) — the normalizer then
+   applies the same heading/prose/card/row/control rules generically,
+   including the uniform 4px title → caption gap; or
 2. Use the attributes directly (`data-dshb-page-title`,
    `data-dshb-item-title`, `data-dshb-card`, …) for full control.
 
@@ -143,7 +147,7 @@ follow-up change — open an issue and it can be added behind a preference.
 ```sh
 pnpm install
 pnpm check        # syntax checks
-pnpm test         # jsdom tests for the DOM normalizer (69 assertions)
+pnpm test         # jsdom tests for the DOM normalizer (79 assertions)
 pnpm sync-styles  # regenerate lib/styles/settings.css from lib/client.js
 ```
 

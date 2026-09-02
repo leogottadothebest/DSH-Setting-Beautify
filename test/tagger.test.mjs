@@ -148,6 +148,26 @@ const archivedPage = `
     </div>
   </div>`;
 
+const archivedInPanel = `
+  <div class="dshAcv" data-dshb-scan>
+    <header>
+      <h2 class="dshAcv-title">已归档对话</h2>
+      <p class="dshAcv-description">管理已归档的会话</p>
+    </header>
+    <ul style="display:flex;flex-direction:column;gap:8px">
+      <li style="border:1px solid #ddd;border-radius:12px;padding:10px 12px;display:flex;align-items:flex-start;gap:12px">
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;min-width:0">
+          <div style="font-size:14px">2024-01-01 的对话</div>
+          <div style="font-size:12px;color:#999">3 条消息 · 归档于 1 月前</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button style="border-radius:8px;height:28px">恢复</button>
+          <button style="border-radius:8px;height:28px">删除</button>
+        </div>
+      </li>
+    </ul>
+  </div>`;
+
 function panelWith(sectionHtml) {
   return `
   <div class="overlay">
@@ -272,6 +292,25 @@ eq(optionsEl.scrollTop, 0, "switching sections resets the scroll to the top");
 optionsEl.scrollTop = 120;
 DSHB.scanAll();
 eq(optionsEl.scrollTop, 120, "re-rendering the same section keeps the scroll");
+
+console.log("\n6c) opted-in third-party section inside the settings dialog (card rows)");
+setSection(archivedInPanel);
+eq($(".dshAcv > header h2").getAttribute("data-dshb-page-title"), "", "in-panel opt-in page title tagged page-title");
+eq($(".dshAcv > header h2 + p").getAttribute("data-dshb-page-desc"), "", "in-panel opt-in page desc tagged page-desc");
+const acvRow = $(".dshAcv ul > li");
+ok(acvRow.hasAttribute("data-dshb-card"), "archived row card tagged card");
+const acvCol = acvRow.firstElementChild;
+eq(acvCol.getAttribute("data-dshb-item-text"), "", "card text column tagged item-text");
+eq(acvCol.firstElementChild.getAttribute("data-dshb-item-title"), "", "card column title tagged item-title");
+eq(acvCol.children[1].getAttribute("data-dshb-item-desc"), "", "card column caption tagged item-desc");
+ok(acvRow.querySelector("button").hasAttribute("data-dshb-control"), "archived row action tagged control");
+
+console.log("\n6d) title/caption gap tokens cover the caption-column contract");
+const cssText6 = readFileSync(join(root, "lib", "styles", "settings.css"), "utf8");
+const acvCss = cssText6.slice(cssText6.indexOf("/* ===="));
+ok(acvCss.includes("--dshb-gap-title-desc"), "stylesheet declares the title-caption gap token");
+ok(acvCss.includes("[data-dshb-item-text]"), "stylesheet normalizes the tagged text column");
+ok(acvCss.includes("[data-dshb-page-title]:has(+ [data-dshb-page-desc])"), "stylesheet couples page title with its prose on opt-in pages");
 
 console.log("\n7) preferences (enable / density / motion)");
 eq(DSHB.loadPrefs().enabled, true, "enabled by default");

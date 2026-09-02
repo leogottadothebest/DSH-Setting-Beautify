@@ -89,13 +89,13 @@ window.DSHB.setPrefs({ density: "compact" })   // 或 { enabled: false }、{ mot
 | 正文 | 14px / 400 / 22px | `--dsw-alias-label-primary` |
 | 辅助文字 | 12px / 400 / 18px | `--dsw-alias-label-tertiary` |
 
-卡片：12px 圆角 · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-3`（相对面板抬升）。控件：8px 圆角、36px 最小高度、品牌色焦点环。半径等均以 `--dshb-*` token 化，未来版本可平滑提供其他外观方案。
+卡片：12px 圆角 · `--dsw-alias-border-l2` · `--dsw-alias-bg-layer-3`（相对面板抬升）。控件：8px 圆角、36px 最小高度、品牌色焦点环。标题与下方注释小字之间的距离在所有被覆盖的页面上统一为 4px（`--dshb-gap-title-desc`，与 DSH 行内一致）。半径等均以 `--dshb-*` token 化，未来版本可平滑提供其他外观方案。
 
 ## 为其他插件页面接入
 
 DOM 归一化器自动覆盖内置页面。对于**你自己插件**的页面，二选一：
 
-1. 在页面根节点添加 `data-dshb-scan`——归一化器会用同样的标题/解释/卡片/行/控件规则泛化处理；或
+1. 在页面根节点添加 `data-dshb-scan`（被托管在设置对话框内的第三方节同样适用）——归一化器会用同样的标题/解释/卡片/行/控件规则泛化处理，标题 → 注释间距也会统一为 4px；或
 2. 直接使用属性（`data-dshb-page-title`、`data-dshb-item-title`、`data-dshb-card` 等）获得完全控制。
 
 见[扩展契约](docs/DESIGN.zh.md#data-dshb-属性契约)。
@@ -109,7 +109,7 @@ DOM 归一化器自动覆盖内置页面。对于**你自己插件**的页面，
 ```sh
 pnpm install
 pnpm check        # 语法检查
-pnpm test         # DOM 归一化器的 jsdom 测试（69 条断言）
+pnpm test         # DOM 归一化器的 jsdom 测试（79 条断言）
 pnpm sync-styles  # 由 lib/client.js 重新生成 lib/styles/settings.css
 ```
 
