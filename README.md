@@ -157,8 +157,17 @@ jsdom and asserts the full `data-dshb-*` tagging contract.
 
 ## Compatibility
 
-- DSH Desktop 2.x (bundled web UI). The tagger is defensive: anything it
-  cannot recognize is simply left untouched.
+- DSH Desktop 2.x (bundled web UI), including 2.0.5: the settings DOM and
+  client-loading contracts were re-audited against 2.0.5 package sources
+  (the relevant @deepseek-ai client packages ship no code change between
+  2.0.4 and 2.0.5), so the plugin works without modification.
+- If the whole settings surface suddenly reverts to its unstyled form,
+  first check whether another plugin in the same profile still imports
+  host APIs that 2.0.5 removed (e.g. `@deepseek-ai/dsh-typert-protocol`
+  stopped exporting `TypertRemoteFailure` in 0.1.2-rc.1) — one failing
+  plugin import can take down the entire profile plugin tree and with it
+  this plugin. The tagger is defensive: anything it cannot recognize is
+  simply left untouched.
 - The stylesheet only runs inside the settings panel scope; nothing outside
   settings is restyled.
 

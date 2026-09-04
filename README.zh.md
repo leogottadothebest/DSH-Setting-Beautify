@@ -117,7 +117,8 @@ pnpm sync-styles  # 由 lib/client.js 重新生成 lib/styles/settings.css
 
 ## 兼容性
 
-- DSH Desktop 2.x（内置 Web UI）。归一化器是防御性的：无法识别的部分一律保持原样。
+- DSH Desktop 2.x（内置 Web UI），含 2.0.5：已与该版本的设置 DOM 与客户端加载契约逐包核对（2.0.4 → 2.0.5 相关 @deepseek-ai 客户端包无代码变更），插件无需改动即可工作。
+- 若设置界面整体回到未美化状态，先检查同一 Profile 里的其他插件是否仍在启动时使用被 2.0.5 移除的宿主 API（例如 `@deepseek-ai/dsh-typert-protocol` 自 0.1.2-rc.1 起不再导出 `TypertRemoteFailure`）——单个插件导入失败会让整棵插件树无法加载，beautify 也会随之不生效。归一化器是防御性的：无法识别的部分一律保持原样。
 - 样式表只在设置面板作用域内生效；设置之外的界面不会被重绘。
 
 ## 安全
